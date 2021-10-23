@@ -1,0 +1,17 @@
+@import "../../../app/variables.scss";
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: var(--theme-main-color);
+}
+
+.loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #00000070;
+    top: 0;
+    z-index: 99999999999999999999999999;
+}

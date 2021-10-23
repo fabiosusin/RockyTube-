@@ -1,0 +1,53 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="page">
+    <div class="left">
+        <div class="categories">
+            <h4>Pesquisar</h4>
+            <span class="divider"></span>
+            <a *ngFor="let category of categories"
+                (click)="onClickFilterProductsByCategory(category.id)">{{category.name}}</a>
+        </div>
+        <div class="bg-products">
+            <div class="card" *ngFor="let product of products">
+                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
+                        [src]="product.auxiliaryProperties.imageUrl" /></div>
+                <div class="description">
+                    <h5>{{ product.name }}</h5>
+                    <div class="infos">
+                        <p *ngIf="product.type == 1"><b>{{ product.balance | quantity }} unidades</b> para <b>Adoção</b></p>
+                        <p *ngIf="product.type == 2"><b>{{ product.balance | quantity }} unidades</b> por <b>R$ {{ product.price | money:'R$' }}</b></p>
+                        <button class="info-btn bt-left" type="button" (click)="buyProduct(product)">Comprar</button>
+                        <button class="info-btn bt-right" type="button"><i class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="bg-products">
+            <div class="card" *ngFor="let product of products">
+                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
+                        [src]="product.auxiliaryProperties.imageUrl" /></div>
+                <div class="description">
+                    <h5>{{ product.name }}</h5>
+                    <div class="infos">
+                        <p *ngIf="product.type == 1"><b>{{ product.balance | quantity }} unidades</b> para <b>Adoção</b></p>
+                        <p *ngIf="product.type == 2"><b>{{ product.balance | quantity }} unidades</b> por <b>R$ {{ product.price | money:'R$' }}</b></p>
+                        <button class="info-btn bt-left" type="button" (click)="buyProduct(product)">Comprar</button>
+                        <button class="info-btn bt-right" type="button" (click)="addToCart(product)"><i
+                                class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="empty-products" *ngIf="!products">
+            <i class="far fa-times-circle"></i>
+            <p>Nenhum Produto encontrado</p>
+        </div>
+        <div class="paginator">
+            <a (click)="decrementPage()"><i class="fas fa-angle-left"></i></a>
+            <input [(ngModel)]="filters.page" type="number" (change)="changePage()" />
+            <a (click)="incrementPage()"><i class="fas fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>

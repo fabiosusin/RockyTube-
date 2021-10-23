@@ -1,0 +1,83 @@
+.page {
+    padding: 50px 150px;
+    background: var(--background-color);
+    min-height: 100vh;
+    .sales {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        color: #fff;
+        .sale {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            border: 2px solid var(--theme-main-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            .header-infos {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                border-bottom: 2px solid var(--theme-main-color);
+                .infos {
+                    margin-bottom: 10px;
+                }
+            }
+            .products {
+                width: 100%;
+                .titles {
+                    margin-top: 10px;
+                }
+                .product {
+                    margin-top: 10px;
+                }
+            }
+            .titles,
+            .infos,
+            .product {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .item {
+                    width: 200px;
+                    text-align: center;
+                    overflow: hidden;
+                    img {
+                        max-width: 100px;
+                        height: 100px;
+                        min-width: 100px;
+                        max-height: 100px;
+                        min-height: 100px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 910px) {
+    .page {
+            padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .page {
+            padding: 50px 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .page {
+            padding: 50px 0;
+    }
+}

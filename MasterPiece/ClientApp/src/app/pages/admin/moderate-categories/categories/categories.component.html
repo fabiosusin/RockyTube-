@@ -1,0 +1,49 @@
+<div class="page">
+
+    <div class="form">
+        <form class="register-form" [formGroup]="form">
+            <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Nome" formControlName="name" />
+            </div>
+            <div class="input-with-icon">
+                <span>Mínimo de Produtos:</span>
+            </div>
+            <div class="input-with-icon">
+                <mat-slider thumbLabel [displayWith]="formatLabelSlider" tickInterval="1" step="1" min="0" max="100" aria-label="units" formControlName="minItems"></mat-slider>
+            </div>
+            <div class="input-with-icon">
+                <span>Mínimo de Produtos Vendidos:</span>
+            </div>
+            <div class="input-with-icon">
+                <mat-slider thumbLabel [displayWith]="formatLabelSlider" tickInterval="1" step="1" min="0" max="100" aria-label="units" formControlName="minSoldItems"></mat-slider>
+            </div>
+            <div class="input-with-icon fw">
+                <button (click)="getCategories(form.value)" type="submit">Filtrar</button>
+                <button [routerLink]="editRoute" type="button">Adicionar Nova Categoria</button>
+            </div>
+        </form>
+        <p class="not-found" *ngIf="!dataSource || dataSource.length == 0">Não foram encontrados nenhum resultado</p>
+        <table *ngIf="dataSource && dataSource.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="itemsQuantity">
+                <th mat-header-cell *matHeaderCellDef>Quantidade de Produtos</th>
+                <td mat-cell *matCellDef="let element"> {{ element.products }} </td>
+            </ng-container>
+            <ng-container matColumnDef="soldItemsQuantity">
+                <th mat-header-cell *matHeaderCellDef>Quantidade de produtos Vendidos</th>
+                <td mat-cell *matCellDef="let element"> {{element.quantityProductSold}} </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>Editar</th>
+                <td mat-cell *matCellDef="let element"><a [routerLink]="editRoute + element.id" class="edit"><i class="fas fa-pencil-alt"></i></a></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="page">
+    <div class="form">
+        <form class="register-form" *ngIf="form" [formGroup]="form">
+
+            <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Nome" formControlName="name" />
+            </div>
+            <ng-container *ngIf="category && category.id" [formGroup]="formMigrationCategory">
+                <div class="input-with-icon">
+                    <mat-slide-toggle formControlName="migrate">Migrar Categoria?</mat-slide-toggle>
+                </div>
+                <div class="input-with-icon" *ngIf="migrateCategoryActivated()">
+                    <i class="fas fa-user"></i>
+                    <select formControlName="newCategoryName" placeholder="Nova Categoria">
+                        <option *ngFor="let lbCategory of categories">{{ lbCategory.name }}</option>
+                    </select>
+                </div>
+            </ng-container>
+            <button (click)="onSubmit(form.value)" type="submit">SALVAR</button>
+
+        </form>
+    </div>
+</div>

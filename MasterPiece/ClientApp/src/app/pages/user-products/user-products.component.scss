@@ -1,0 +1,133 @@
+@import "../../../shared/scss/bg-products.scss";
+@import "../../app.component.scss";
+
+.page {
+    padding: 50px 150px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    flex-direction: row;
+    height: auto;
+    .form {
+        border: 2px solid var(--theme-main-color-darker);
+        margin-bottom: 20px;
+    }
+    .bg-products {
+        width: 100%;
+    }
+    .empty-products {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        color: #fff;
+        * {
+            width: 100%;
+            text-align: center;
+            font-size: 50px;
+        }
+        i {
+            color: var(--theme-main-color);
+        }
+    }
+    .paginator {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        * {
+            margin: 0 2.5px;
+        }
+        a {
+            border: 2px solid;
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+            &:hover {
+                border-color: var(--theme-main-color);
+                color: var(--theme-main-color);
+            }
+        }
+        input {
+            width: 50px;
+            color: var(--theme-main-color);
+            border: 2px solid #000;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+            :focus {
+                border: 2px solid var(--theme-main-color);
+            }
+        }
+    }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@media only screen and (max-width: 1900px) {
+    .bg-products {
+        .card {
+            width: 19%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1750px) {
+    .bg-products {
+        .card {
+            width: 18%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1550px) {
+    .bg-products {
+        .card {
+            width: 26%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .bg-products {
+        .card {
+            width: 42%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .bg-products {
+        margin-left: 0;
+        width: 100%;
+        .card {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .page{
+        padding: 50px;
+        .bg-products {
+            padding: 0;
+            .card{
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .page{
+        padding: 50px 0;
+    }
+}

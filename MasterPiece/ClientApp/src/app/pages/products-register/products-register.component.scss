@@ -1,0 +1,66 @@
+@import "../../app.component.scss";
+
+.page {
+    .form {
+        .register-form {
+            .image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100px;
+                .image-icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    width: 100px;
+                    border: 2px solid;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    i {
+                        width: 30px;
+                        font-size: 30px;
+                    }
+                }
+                .bgImg {
+                    overflow: hidden;
+                    .remove-img {
+                        color: var(--danger);
+                        text-align: center;
+                        width: 25px;
+                        height: 25px;
+                        cursor: pointer;
+                        visibility: hidden;
+                        position: absolute;
+                    }
+                    &:hover {
+                        background-color: #333333b5;
+                        filter: brightness(0.8);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 35px;
+                        transition: 0.3s;
+                        i {
+                            visibility: visible;
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        background-size: cover;
+                        object-fit: cover;
+                    }
+                }
+                input {
+                    opacity: 0;
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    margin-top: -50px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

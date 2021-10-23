@@ -1,0 +1,14 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="login-page">
+    <div class="logo"></div>
+    <div class="form">
+        <form class="login-form" [formGroup]="form">
+            <input type="text" placeholder="Email" formControlName="email" />
+            <input type="password" placeholder="Senha" formControlName="password" />
+            <a>Esqueci minha senha</a>
+            <button type="submit" (click)="onSubmit(form.value)">ENTRAR</button>
+            <label for="Input_RememberMe"></label>
+            <p>Não Registrado? <a [routerLink]="'/register'">Crie uma conta</a></p>
+        </form>
+    </div>
+</div>

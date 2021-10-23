@@ -1,0 +1,21 @@
+@import "../../admin-list.scss";
+
+.page {
+    .form {
+        .register-form {
+            span {
+                color: #fff;
+                font-weight: bold;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 5px;
+            }
+            .fw {
+                justify-content: space-between;
+                button {
+                    width: 45%;
+                }
+            }
+        }
+    }
+}

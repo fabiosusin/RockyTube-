@@ -1,0 +1,132 @@
+@import "../../../shared/scss/bg-products.scss";
+
+.page {
+    position: relative;
+    .header-info {
+        height: 400px;
+        background: var(--background-color);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        h1,
+        p {
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-weight: 300;
+            border: 3px solid #fff;
+            padding: 20px;
+            display: table;
+        }
+        p {
+            width: 100%;
+        }
+    }
+    .main-color-line {
+        height: 40px;
+        background: var(--theme-main-color-darker);
+    }
+    .content {
+        padding: 0 150px;
+    }
+    .texts {
+        text-align: center;
+        margin-top: 20px;
+        p {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .botao {
+            display: table;
+            margin: 30px auto;
+        }
+    }
+    .title {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 3px;
+        margin: 50px;
+        span {
+            border: 2px solid #333;
+            padding: 10px 15px;
+            font-size: 17px;
+            flex-flow: row wrap;
+            text-transform: uppercase;
+            color: #000;
+        }
+        b {
+            display: block;
+            flex: 1;
+            height: 2px;
+            opacity: 0.1;
+            background-color: var(--theme-main-color);
+        }
+    }
+    .category{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 1750px) {
+    .bg-products {
+        .card {
+            width: 18%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1550px) {
+    .bg-products {
+        .card {
+            width: 26%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .bg-products {
+        .card {
+            width: 42%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .bg-products {
+        margin-left: 0;
+        width: 100%;
+        .card {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .page {
+        .content {
+            padding: 50px;
+            .bg-products {
+                padding: 0;
+                .card {
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .page {
+        .content {
+            padding: 50px 0;
+        }
+    }
+}
+
+
