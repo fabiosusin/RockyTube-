@@ -1,0 +1,52 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="page">
+  <div class="form">
+    <form class="register-form" *ngIf="form" [formGroup]="form">
+
+      <div class="image" formGroupName="auxiliaryProperties">
+        <a class="image-icon" *ngIf="!getImage()">
+          <i class="fas fa-camera"></i>
+        </a>
+        <a class="image-icon bgImg" *ngIf="getImage()">
+          <img [src]="getImage()" />
+          <i class="remove-img fas fa-times" (click)="onClickRemoveImage()"></i>
+        </a>
+        <input type="file" (change)="attachFile($event, 'pictureBase64')" *ngIf="!getImage()">
+      </div>
+
+      <div class="input-with-icon">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Nome" formControlName="name" />
+      </div>
+
+      <div class="input-with-icon">
+        <i class="fas fa-pencil-alt"></i>
+        <textarea type="text" placeholder="Descrição" formControlName="description"></textarea>
+      </div>
+
+      <div class="input-with-icon" *ngIf="categories" formGroupName="auxiliaryProperties">
+        <i class="fas fa-bars"></i>
+        <input list="categories" id="category" placeholder="Categoria" formControlName="categoryName" />
+        <datalist id="categories">
+          <option *ngFor="let lbCategory of categories">{{ lbCategory.name }}</option>
+        </datalist>
+      </div>
+
+      <div class="input-with-icon">
+        <ng-container *ngIf="getVideo()">
+          <i class="remove-img fas fa-times red" (click)="onClickRemoveVideo()"></i>
+          <label class="select-file" (click)="onClickRemoveVideo()">{{videoName}}</label>
+        </ng-container>
+        <ng-container *ngIf="!getVideo()">
+          <i class="fas fa-video"></i>
+          <label class="select-file" for="select-movie">Selecionar um filme</label>
+          <input class="hide" id="select-movie" type='file' (change)="attachFile($event, 'pathBase64', 40)">
+        </ng-container>
+      </div>
+
+      <button (click)="onSubmit(form.value)" type="submit">CADASTRAR</button>
+      <label for="Input_RememberMe"></label>
+
+    </form>
+  </div>
+</div>

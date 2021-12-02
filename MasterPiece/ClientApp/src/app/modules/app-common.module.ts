@@ -6,7 +6,7 @@ import { MatProgressSpinnerModule, MatSliderModule, MatSlideToggleModule, MatTab
 import { LoaderComponent } from 'src/shared/components/loader/loader.component';
 import { MoneyDirective } from 'src/shared/directives/money.directive';
 import { CpfCnpjDirective } from 'src/shared/directives/cpf-cnpj.directive';
-import { ZipCodeDirective } from 'src/shared/directives/zip-code.directive';
+import { CardValidityDateDirective } from 'src/shared/directives/zip-code.directive';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { MoneyPipe } from 'src/shared/pipe/money.pipe';
 
@@ -15,7 +15,7 @@ import { MoneyPipe } from 'src/shared/pipe/money.pipe';
     LoaderComponent,
     MoneyDirective,
     CpfCnpjDirective,
-    ZipCodeDirective,
+    CardValidityDateDirective,
     QuantityPipe,
     MoneyPipe
   ],
@@ -33,7 +33,7 @@ import { MoneyPipe } from 'src/shared/pipe/money.pipe';
   exports: [
     MoneyDirective,
     CpfCnpjDirective,
-    ZipCodeDirective,
+    CardValidityDateDirective,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,

@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Repository.Settings;
 using System.Text;
 
-namespace MasterPiece
+namespace RockyTube
 {
 
     public class Startup
@@ -30,14 +30,14 @@ namespace MasterPiece
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MasterPieceDatabaseSettings>(
-                Configuration.GetSection(nameof(MasterPieceDatabaseSettings)));
+            services.Configure<RockyTubeDatabaseSettings>(
+                Configuration.GetSection(nameof(RockyTubeDatabaseSettings)));
 
             services.AddControllers(options =>
                 options.Filters.Add(new HttpResponseExceptionFilter()));
 
-            services.AddSingleton<IMasterPieceDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<MasterPieceDatabaseSettings>>().Value);
+            services.AddSingleton<IRockyTubeDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<RockyTubeDatabaseSettings>>().Value);
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

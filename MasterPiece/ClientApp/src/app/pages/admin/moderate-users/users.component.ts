@@ -1,4 +1,4 @@
-import { User, Address } from 'src/models/register-login/user';
+import { User } from 'src/models/register-login/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/shared/services/api.service';
@@ -42,31 +42,4 @@ export class UsersComponent extends BaseEdit<User> implements OnInit {
   getUsers = async (filter: UsersFilter) => {
     this.dataSource = await this.apiService.users(filter);
   }
-
-  getAddress = (add: Address) => {
-    if (!add)
-      return '';
-
-    const fields = [];
-    if (add.city && add.state)
-      fields.push(`${add.city} - ${add.state}`);
-    else if (add.city)
-      fields.push(add.state);
-
-    if (add.street && add.neighborhood)
-      fields.push(`${add.street} - ${add.neighborhood}`);
-    else if (add.street)
-      fields.push(add.street);
-    else if (add.neighborhood)
-      fields.push(add.neighborhood);
-
-    if (add.number)
-      fields.push(add.number);
-
-    if (add.zipCode)
-      fields.push(add.zipCode);
-
-    return fields ? fields.join('\r\n') : '';
-  }
-
 }

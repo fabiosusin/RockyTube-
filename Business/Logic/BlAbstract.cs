@@ -12,7 +12,7 @@ namespace Business.Logic
 
         public MongoDatabase MongoDatabase;
         protected MongoCollection<TEntity> Collection { get; }
-        public BlAbstract(IMasterPieceDatabaseSettings settings)
+        public BlAbstract(IRockyTubeDatabaseSettings settings)
         {
             MongoDatabase = new DbAccess(settings).MongoDatabase;
             Collection = MongoDatabase.GetCollection<TEntity>();

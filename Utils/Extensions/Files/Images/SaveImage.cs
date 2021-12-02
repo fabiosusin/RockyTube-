@@ -13,7 +13,7 @@ namespace Utils.Extensions.Files.Images
     {
         private const string FilesPath = "/ClientApp/src/assets";
         private const string DbFilesPath = "/../../assets";
-        private const string PicturesPath = "/ProductsImages";
+        private const string PicturesPath = "/MoviesImages";
         private const string PicturesPathWebp = "/Webp";
         private const string PicturesPathJpeg = "/Jpeg";
 

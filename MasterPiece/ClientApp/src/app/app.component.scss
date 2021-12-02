@@ -186,6 +186,7 @@
                     color: rgb(32, 32, 36);
                 }
                 select,
+                textarea,
                 input {
                     padding: 5px;
                     padding-left: 40px;
@@ -318,6 +319,26 @@ h6,
 ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar,
 ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
     background-color: var(--theme-main-color-darker);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.hide {
+    display: none;
+}
+
+.red{
+    color: var(--danger) !important;
 }
 
 @media only screen and (max-width: 1250px) {

@@ -4,16 +4,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { LoggedUserModel } from "src/models/logged-user/logged-user";
 import { Login } from "src/models/login-register/login";
-import { Product } from "src/models/product/product";
 import { User } from "src/models/register-login/user";
 import { BaseApiService } from "../base/base-api.service";
-import { ProductCategoryOutput } from 'src/models/category/product-category-output';
 import { Category } from 'src/models/category/category';
-import { FiltersProduct } from 'src/models/product/filters-product';
 import { FiltersCategory } from 'src/models/category/filters-category';
-import { SaleInput } from 'src/models/sale/sale-input';
-import { FiltersSale } from 'src/models/sales/filters-sale';
-import { SaleOutput } from 'src/models/sales/sales-output';
+import { FiltersMovie } from 'src/models/movie/filters-movie';
+import { Movie } from 'src/models/movie/movie';
+import { MovieCategoryOutput } from 'src/models/category/movie-category-output';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseApiService {
@@ -54,20 +51,20 @@ export class ApiService extends BaseApiService {
   //#endregion
 
   //#region ProductsList
-  saveProduct = async (product: Product): Promise<any> =>
-    await this.post('productsregister/create', product, await this.getRequestHeaders());
+  saveMovie = async (movie: Movie): Promise<any> =>
+    await this.post('moviesregister/create', movie, await this.getRequestHeaders());
 
-  deleteProduct = async (id: string): Promise<any> =>
-    await this.post(`productsregister/delete?${ApiService.getUrlQueryParameters({ id })}`, {}, await this.getRequestHeaders());
+  deleteMovie = async (id: string): Promise<any> =>
+    await this.post(`moviesregister/delete?${ApiService.getUrlQueryParameters({ id })}`, {}, await this.getRequestHeaders());
 
-  listProduct = async (filters?: FiltersProduct): Promise<Product[]> => {
-    filters = filters ? filters : new FiltersProduct();
-    return await this.post('productsList/list', filters, await this.getRequestHeaders());
+  listMovie = async (filters?: FiltersMovie): Promise<Movie[]> => {
+    filters = filters ? filters : new FiltersMovie();
+    return await this.post('moviesList/list', filters, await this.getRequestHeaders());
   }
   //#endregion
 
   //#region Category
-  listCategories = async (filters?: FiltersCategory): Promise<ProductCategoryOutput[]> => {
+  listCategories = async (filters?: FiltersCategory): Promise<MovieCategoryOutput[]> => {
     filters = filters ? filters : new FiltersCategory();
     return await this.post('categories/get-categories', filters, await this.getRequestHeaders());
   }
@@ -85,17 +82,6 @@ export class ApiService extends BaseApiService {
 
   migrateCategory = async (input: CategoryMigrationInput): Promise<User> =>
     await this.post(`categories/migration`, input, await this.getRequestHeaders());
-  //#endregion
-
-  //#region Sales
-  getSaleTotal = async (input: string[]): Promise<number> =>
-    await this.post(`sales/total`, input, await this.getRequestHeaders());
-
-  saveSale = async (input: SaleInput): Promise<void> =>
-    await this.post(`sales/create`, input, await this.getRequestHeaders());
-
-  getSales = async (input: FiltersSale): Promise<SaleOutput[]> =>
-    await this.post(`sales/get`, input, await this.getRequestHeaders());
   //#endregion
 }
 

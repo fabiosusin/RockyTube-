@@ -4,7 +4,7 @@
     <div class="tab">
         <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 0 }" (click)="onClickChangeTab(0)">Dados
             Pessoais</button>
-        <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 1 }" (click)="onClickChangeTab(1)">Endereço</button>
+        <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 1 }" (click)="onClickChangeTab(1)">Dados de Pagamento</button>
     </div>
     <div class="form">
         <form *ngIf="form" class="register-form" [formGroup]="form">
@@ -40,35 +40,25 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="tab == 1" formGroupName="address">
+            <ng-container *ngIf="tab == 1" formGroupName="card">
                 <div class="input-with-icon">
                     <i class="fas fa-road"></i>
-                    <input type="text" placeholder="Rua" formControlName="street" />
+                    <input type="text" placeholder="Nome Impresso" formControlName="name" />
                 </div>
 
                 <div class="input-with-icon">
                     <i class="fas fa-list-ol"></i>
-                    <input placeholder="Número" formControlName="number" />
+                    <input type="number" placeholder="Número" formControlName="number" />
                 </div>
 
                 <div class="input-with-icon">
                     <i class="fas fa-lock"></i>
-                    <input type="text" placeholder="Bairro" formControlName="neighborhood" />
+                    <input type="text" placeholder="CVV" formControlName="securityCode" maxlength="3" />
                 </div>
 
                 <div class="input-with-icon">
                     <i class="fas fa-list-ol"></i>
-                    <input type="text" placeholder="CEP" formControlName="zipCode" zipCode />
-                </div>
-
-                <div class="input-with-icon">
-                    <i class="fas fa-city"></i>
-                    <input type="text" placeholder="Cidade" formControlName="city" />
-                </div>
-
-                <div class="input-with-icon">
-                    <i class="fas fa-city"></i>
-                    <input type="text" placeholder="Estado" formControlName="state" />
+                    <input placeholder="Data Validade (MM/AAAA)" formControlName="validityDate" cardValidityDate />
                 </div>
             </ng-container>
 

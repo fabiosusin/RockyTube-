@@ -1,18 +1,18 @@
-﻿using Business.Logic.Products;
+﻿using Business.Logic.Movies;
 using DAO.Databases;
 using DAO.Input;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Settings;
 
-namespace MasterPiece.Controllers
+namespace RockyTube.Controllers
 {
     [Route("api/[controller]"), AllowAnonymous]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
         private readonly BlCategories _blCategoriesList;
-        public CategoriesController(IMasterPieceDatabaseSettings settings) => _blCategoriesList = new BlCategories(settings);
+        public CategoriesController(IRockyTubeDatabaseSettings settings) => _blCategoriesList = new BlCategories(settings);
 
         [HttpPost, Route("Save")]
         public IActionResult Save([FromBody] Category body) => Ok(_blCategoriesList.Save(body));

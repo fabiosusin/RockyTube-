@@ -3,10 +3,10 @@ import { DefaultValueAccessor, NgControl } from '@angular/forms';
 import { KeysNames } from 'src/models/directives/key-names';
 
 @Directive({
-  selector: '[zipCode]',
+  selector: '[cardValidityDate]',
   providers: [DefaultValueAccessor]
 })
-export class ZipCodeDirective implements OnChanges, OnInit {
+export class CardValidityDateDirective implements OnChanges, OnInit {
   private allowedKeys: string[] = [
     ...KeysNames.controls,
     ...KeysNames.numbers
@@ -45,7 +45,7 @@ export class ZipCodeDirective implements OnChanges, OnInit {
 
     value = (model === value ? model : value).match(/\d+/g).join('');
 
-    const pattern = '#####-###';
+    const pattern = '##/####';
     let i = 0;
     let formatted = pattern.replace(/#/g, _ => (value[i] ? value[i++] : ''));
     formatted = formatted.match(/(.*)\d/)[0].toString();

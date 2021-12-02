@@ -7,14 +7,12 @@ export class User {
     cpf?: string;
     admin?: boolean = false;
     blocked?: boolean = false;
-    address?: Address = new Address();
+    card?: Card = new Card();
 }
 
-export class Address {
-    state?: string;
-    zipCode?: string;
-    city?: string;
-    neighborhood?: string;
-    number?: string;
-    street?: string;
+export class Card {
+    number?: number;
+    name?: string;
+    securityCode?: number;
+    validityDate?: string;
 }

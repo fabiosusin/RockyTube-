@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Settings;
 
-namespace MasterPiece.Controllers
+namespace RockyTube.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +16,7 @@ namespace MasterPiece.Controllers
     {
 
         private readonly BlUsers _blUsers;
-        public UsersController(IMasterPieceDatabaseSettings settings)
+        public UsersController(IRockyTubeDatabaseSettings settings)
         {
             _blUsers = new BlUsers(settings);
         }

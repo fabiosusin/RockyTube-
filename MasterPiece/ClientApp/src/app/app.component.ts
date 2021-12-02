@@ -1,14 +1,12 @@
 import { UserService } from 'src/shared/services/user.service';
-import { ProductCategoryOutput } from 'src/models/category/product-category-output';
 import { ApiService } from './../shared/services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductType } from 'src/models/product/product';
 import { Utils } from 'src/shared/utils';
 import { LoggedUserService } from './cache/loggedUser.component';
 import { BasePage } from './pages/base/base.component';
 import { LoggedUserModel } from 'src/models/logged-user/logged-user';
-import { CartComponent } from './cache/cart.component';
+import { MovieCategoryOutput } from 'src/models/category/movie-category-output';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +15,6 @@ import { CartComponent } from './cache/cart.component';
 })
 export class AppComponent extends BasePage implements OnInit {
   constructor(
-    protected cartService: CartComponent,
     protected userService: UserService,
     protected loggedUserService: LoggedUserService,
     protected apiService: ApiService,
@@ -31,7 +28,7 @@ export class AppComponent extends BasePage implements OnInit {
   amount: number;
   openDropdown: boolean;
   loggedModel: LoggedUserModel;
-  categories = Array<ProductCategoryOutput>();
+  categories = Array<MovieCategoryOutput>();
 
   ngOnInit(): void {
     this.getCategories();
@@ -53,16 +50,10 @@ export class AppComponent extends BasePage implements OnInit {
 
   subscribeEvents() {
     this.loggedModel = this.loggedUserService.getLoggedUser();
-    this.amount = this.cartService.getShoppingCartAmount();
 
     this.userService.getLoggedUser()
       .subscribe((item: LoggedUserModel) => {
         this.loggedModel = item
-      });
-
-    this.userService.getShoppingCartAmount()
-      .subscribe((amount: number) => {
-        this.amount = amount
       });
   }
 
@@ -72,11 +63,11 @@ export class AppComponent extends BasePage implements OnInit {
     }, 0);
   }
 
-  onClickGoToRegisterProduct(type: ProductType) {
-    this.router.navigateByUrl('/products', { state: { type: type } });
+  onClickGoToRegisterMovie() {
+    this.router.navigateByUrl('/movies' );
   }
 
-  onClickFindProducts = () => this.router.navigateByUrl('/products-list', { state: { productName: this.productName } });
+  onClickFindProducts = () => this.router.navigateByUrl('/movies-list', { state: { productName: this.productName } });
 
-  onClickFilterProductsByCategory = (categoryId: string) => this.router.navigateByUrl('/products-list', { state: { categoryId: categoryId } });
+  onClickFilterProductsByCategory = (categoryId: string) => this.router.navigateByUrl('/movies-list', { state: { categoryId: categoryId } });
 }

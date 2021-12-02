@@ -7,7 +7,7 @@ namespace Repository.DbConnection
     public class DbAccess
     {
         public MongoDatabase MongoDatabase;
-        public DbAccess(IMasterPieceDatabaseSettings settings)
+        public DbAccess(IRockyTubeDatabaseSettings settings)
         {
             BsonSerializer.RegisterSerializationProvider(new BsonSerializationProvider());
             var client = new MongoClient(settings.ConnectionString);

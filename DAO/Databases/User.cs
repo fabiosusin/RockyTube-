@@ -9,7 +9,7 @@ namespace DAO.Databases
         public string Email { get; set; }
         public string Cpf { get; set; }
         public bool Blocked { get; set; }
-        public Address Address { get; set; }
+        public Card Card { get; set; }
 
         [BsonIgnore]
         public bool Admin { get; set; }
@@ -27,13 +27,11 @@ namespace DAO.Databases
 
     }
 
-    public class Address
+    public class Card
     {
-        public string ZipCode { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
-        public string Neighborhood { get; set; }
-        public string Number { get; set; }
-        public string Street { get; set; }
+        public long Number { get; set; }
+        public string Name { get; set; }
+        public int SecurityCode { get; set; }
+        public string ValidityDate { get; set; }
     }
 }

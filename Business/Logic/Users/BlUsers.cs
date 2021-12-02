@@ -17,7 +17,7 @@ namespace Business.Logic.Users
 {
     public class BlUsers : BlAbstract<User>
     {
-        public BlUsers(IMasterPieceDatabaseSettings settings) : base(settings) { }
+        public BlUsers(IRockyTubeDatabaseSettings settings) : base(settings) { }
 
         public override void EntityValidation(User user)
         {
@@ -34,8 +34,20 @@ namespace Business.Logic.Users
             if (!StringExtension.IsCpf(user.Cpf))
                 throw new ValidationResponseException("CPF inválido!");
 
-            if (!string.IsNullOrEmpty(user.Address.ZipCode) && user.Address.ZipCode.Length != 8)
-                throw new ValidationResponseException("CEP inválido!");
+            if (user.Card == null)
+                throw new ValidationResponseException("Informe os dados do cartão!");
+
+            if (user.Card.Number < 1000000000000000)
+                throw new ValidationResponseException("Número de cartão inválido!");
+
+            if (!string.IsNullOrEmpty(user.Card.Name) && user.Card.Name.Split(' ').Length < 2)
+                throw new ValidationResponseException("Nome do cartão inválido!");
+
+            if (!string.IsNullOrEmpty(user.Card.ValidityDate) && user.Card.ValidityDate.Length != 6)
+                throw new ValidationResponseException("Data de validade do cartão inválida!");
+
+            if (user.Card.SecurityCode < 100)
+                throw new ValidationResponseException("Código de segurança inválido!");
 
             if (!StringExtension.IsValidEmail(user.Email))
                 throw new ValidationResponseException("Email inválido!");
@@ -89,7 +101,7 @@ namespace Business.Logic.Users
         private class MasterUser
         {
             public const string Name = "teste@teste.com";
-            public const string Password = "masterpiece";
+            public const string Password = "rockytube";
 
             public static bool IsAdmin(string name, string pass) => name == Name && pass == Password;
         }

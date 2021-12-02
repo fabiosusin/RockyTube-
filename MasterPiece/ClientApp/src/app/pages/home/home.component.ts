@@ -1,14 +1,13 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/models/product/product';
 import { ApiService } from 'src/shared/services/api.service';
 import { Utils } from 'src/shared/utils';
 import { BaseEdit } from '../base/base-edit.component';
-import { ProductCategoryOutput } from 'src/models/category/product-category-output';
-import { CartComponent } from 'src/app/cache/cart.component';
 import { UserService } from 'src/shared/services/user.service';
-import { ProducstService } from 'src/shared/services/products.service';
+import { MoviesService } from 'src/shared/services/products.service';
+import { Movie } from 'src/models/movie/movie';
+import { MovieCategoryOutput } from 'src/models/category/movie-category-output';
 
 @Component({
   selector: 'app-home',
@@ -16,29 +15,28 @@ import { ProducstService } from 'src/shared/services/products.service';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent extends BaseEdit<Product> implements OnInit {
+export class HomeComponent extends BaseEdit<Movie> implements OnInit {
   constructor(
-    protected cartService: CartComponent,
     protected userService: UserService,
-    protected producstService: ProducstService,
+    protected moviesService: MoviesService,
     protected apiService: ApiService,
     protected router: Router,
     protected utils: Utils) {
     super(router, utils);
   }
 
-  products = Array<Product>();
-  categories = Array<ProductCategoryOutput>();
+  movies = Array<Movie>();
+  categories = Array<MovieCategoryOutput>();
 
   async ngOnInit(): Promise<void> {
-    await this.getProducts();
+    await this.getMovies();
     await this.getCategories();
   }
 
-  async getProducts() {
+  async getMovies() {
     try {
       this.isLoading = true;
-      this.products = await this.producstService.getProducts({
+      this.movies = await this.moviesService.getMovies({
         limit: 8
       });
 
@@ -54,7 +52,7 @@ export class HomeComponent extends BaseEdit<Product> implements OnInit {
   async getCategories() {
     try {
       this.isLoading = true;
-      this.categories = await this.producstService.getCategories()
+      this.categories = await this.moviesService.getCategories()
     }
     catch (e) {
       this.utils.errorMessage(e);
@@ -64,10 +62,6 @@ export class HomeComponent extends BaseEdit<Product> implements OnInit {
     }
   }
 
-  addToCart = (product: Product) => this.producstService.addToCart(product)
-
-  buyProduct = (product: Product) => this.producstService.buyProduct(product);
-
-  onClickFilterProductsByCategory = (categoryId: string) => this.router.navigateByUrl('/products-list', { state: { categoryId: categoryId } });
+  onClickFilterMoviesByCategory = (categoryId: string) => this.router.navigateByUrl('/movies-list', { state: { categoryId: categoryId } });
 
 }

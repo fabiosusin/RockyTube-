@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggedUserService } from 'src/app/cache/loggedUser.component';
 import { LoggedUserModel } from 'src/models/logged-user/logged-user';
-import { Address, User } from 'src/models/register-login/user';
+import { User } from 'src/models/register-login/user';
 import { ApiService } from 'src/shared/services/api.service';
 import { UserService } from 'src/shared/services/user.service';
 import { Utils } from 'src/shared/utils';
@@ -54,13 +54,11 @@ export class RegisterScreenComponent extends BaseEdit<User> implements OnInit {
       confirmPassword: [this.user.confirmPassword, Validators.required],
       cpf: [this.user.cpf, Validators.required],
       email: [this.user.email, Validators.required],
-      address: this.formBuilder.group({
-        street: [this.user.address.street],
-        city: [this.user.address.city],
-        state: [this.user.address.state],
-        zipCode: [this.user.address.zipCode],
-        number: [this.user.address.number],
-        neighborhood: [this.user.address.neighborhood]
+      card: this.formBuilder.group({
+        name: [this.user.card.name, Validators.required],
+        number: [this.user.card.number, Validators.required],
+        securityCode: [this.user.card.securityCode, Validators.required],
+        validityDate: [this.user.card.validityDate, Validators.required]
       })
     });
   };
