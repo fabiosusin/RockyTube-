@@ -7,7 +7,7 @@ import { Category } from 'src/models/category/category';
 import { User } from 'src/models/register-login/user';
 import { ApiService } from 'src/shared/services/api.service';
 import { Utils } from 'src/shared/utils';
-import { MoviesService } from 'src/shared/services/products.service';
+import { MoviesService } from 'src/shared/services/movies.service';
 
 @Component({
   selector: 'app-categories',
@@ -26,7 +26,7 @@ export class CategoriesComponent extends BaseEdit<Category> implements OnInit {
 
   editRoute: string = '/admin/categories/edit/';
   filter: FiltersCategory = new FiltersCategory();
-  displayedColumns: string[] = ['name', 'itemsQuantity', 'soldItemsQuantity', 'edit'];
+  displayedColumns: string[] = ['name', 'itemsQuantity', 'edit'];
   dataSource = Array<User>();
 
   ngOnInit() {
@@ -37,13 +37,11 @@ export class CategoriesComponent extends BaseEdit<Category> implements OnInit {
   assignForm = async () => {
     this.form = this.formBuilder.group({
       name: [this.filter.name],
-      minItems: [this.filter.MinItems],
-      minSoldItems: [this.filter.MinSoldItems]
+      minItems: [this.filter.minItems]
     });
   };
 
   getCategories = async (filter: FiltersCategory) => {
-    filter.hasValidProducts = false;
     this.dataSource = await this.moviesService.getCategories(filter);
   }
 

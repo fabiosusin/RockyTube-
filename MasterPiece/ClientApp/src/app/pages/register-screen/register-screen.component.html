@@ -4,13 +4,15 @@
     <div class="tab">
         <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 0 }" (click)="onClickChangeTab(0)">Dados
             Pessoais</button>
-        <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 1 }" (click)="onClickChangeTab(1)">Dados de Pagamento</button>
+        <button type="button" class="tablinks" [ngClass]="{ 'active': tab == 1 }" (click)="onClickChangeTab(1)">Dados de
+            Pagamento</button>
     </div>
     <div class="form">
+        <h1 class="title">RockyTube</h1>
         <form *ngIf="form" class="register-form" [formGroup]="form">
 
             <div class="input-with-icon" *ngIf="loggedUser && loggedUser.admin">
-                <mat-slide-toggle  formControlName="blocked">Bloquear</mat-slide-toggle>
+                <mat-slide-toggle formControlName="blocked">Bloquear</mat-slide-toggle>
             </div>
 
             <ng-container *ngIf="tab == 0">
@@ -64,8 +66,7 @@
 
             <button (click)="onSubmit(form.value)" type="submit">CADASTRAR</button>
 
-            <a class="back-to-login" [routerLink]="['/login']"><i class="fa fa-arrow-left"></i> <span>Voltar para
-                    Login</span></a>
+            <a class="back-to-login" (click)="goBack()"><i class="fa fa-arrow-left"></i> <span>Voltar</span></a>
 
         </form>
     </div>

@@ -50,20 +50,9 @@ namespace Business.Logic.Movies
 
         public IEnumerable<Category> List(FiltersCategories filters) => Collection.Find(QueryFilters(filters));
 
-        public IEnumerable<MovieCategoryOutput> GetCategories(FiltersCategories filters)
-        {
-            var result = List(filters)?.Select(x => new MovieCategoryOutput { Id = x.Id, Name = x.Name, ImageUrl = GetCategoryimage(x.Id), Products = BlProducts.GetProducts(new FiltersMovies { Status = ProductStatus.Valid })?.Count() ?? 0 });
+        public IEnumerable<MovieCategoryOutput> GetCategories(FiltersCategories filters) => List(filters)?.Select(x => new MovieCategoryOutput { Id = x.Id, Name = x.Name, ImageUrl = GetCategoryimage(x.Id), Movies = BlProducts.GetMovies(new FiltersMovies { CategoryId = x.Id })?.Count() ?? 0 }).Where(x => x.Movies >= (filters?.MinItems ?? 1));
 
-            if (filters?.MinItems.HasValue ?? false && filters.MinItems.Value > 0)
-                result = result.Where(x => x.Products >= filters.MinItems.Value);
-
-            if (filters?.MinSoldItems.HasValue ?? false && filters.MinSoldItems.Value > 0)
-                result = result.Where(x => x.QuantityProductSold >= filters.MinSoldItems.Value);
-
-            return result;
-        }
-
-        private string GetCategoryimage(string categoryId) => BlProductsList.GetProducts(new FiltersMovies { CategoryId = categoryId, HasPicture = true, Limit = 1 })?.FirstOrDefault()?.Image.GetImage(ListResolutionsSize.Url512, FileType.Jpeg);
+        private string GetCategoryimage(string categoryId) => BlProductsList.GetMovies(new FiltersMovies { CategoryId = categoryId, HasPicture = true, Limit = 1 })?.FirstOrDefault()?.Image.GetImage(ListResolutionsSize.Url512, FileType.Jpeg);
 
         private IMongoQuery QueryFilters(FiltersCategories filters)
         {
@@ -71,8 +60,6 @@ namespace Business.Logic.Movies
                 return Query.And(Query.Empty);
 
             var list = new List<IMongoQuery>();
-            if (filters.HasValidProducts)
-                list.Add(Query<Category>.In(x => x.Id, BlProducts.GetProducts(new FiltersMovies { Status = ProductStatus.Valid }).Select(x => x.CategoryId).Distinct()));
 
             if (!string.IsNullOrEmpty(filters.Id))
                 list.Add(Query<Category>.EQ(x => x.Id, filters.Id));

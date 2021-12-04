@@ -1,12 +1,11 @@
 <div class="bg-top">
     <div class="bg-top-upper">
         <div class="logo" [routerLink]="'/home'">
-            <strong style="color: white">LOGO</strong>
-            <!-- <img src="../../../assets/images/logo-RockyTube-laranja.png" alt="Logo Topo Tag"> -->
+            <strong>RockyTube</strong>
         </div>
         <div class="find-product">
-            <input type="text" [(ngModel)]="productName" placeholder="Buscar Filme" (keyup.enter)="onClickFindProducts()" />
-            <button type="button" (click)="onClickFindProducts()">
+            <input type="text" [(ngModel)]="movieName" placeholder="Buscar Filme" (keyup.enter)="onClickFindMovies()" />
+            <button type="button" (click)="onClickFindMovies()">
                 <i class="fas fa-search"></i>
             </button>
         </div>
@@ -20,14 +19,13 @@
                 <div class="dropdown-items" (clickOutside)="openDropdown ? onClickOutsideChangeDropdown(false) : null"
                     *ngIf="openDropdown && loggedModel.user.admin">
                     <a [routerLink]="'/movies'">Adicionar Filmes</a>
+                    <a [routerLink]="'/admin/users'">Usuários</a>
+                    <a [routerLink]="'/admin/categories'">Categorias</a>
                     <a (click)="onClickLogout()">Sair</a>
                 </div>
             </div>
             <a *ngIf="!(loggedModel && loggedModel.user)" [routerLink]="'/login'"><i class="far fa-user"></i></a>
         </div>
-    </div>
-    <div class="bg-top-lower">
-        <div class="sub-category" *ngFor="let category of categories" (click)="onClickFilterProductsByCategory(category.id)">{{category.name}}</div>
     </div>
 </div>
 <div>
@@ -35,9 +33,6 @@
 </div>
 <div class="footer">
     <div class="logo-rodape">
-        <a>
-            <!-- <img src="../../../assets/images/logo-RockyTube-laranja.png" alt="Logo TAG Rodapé"> -->
-        </a>
-        <p>v1.0.0 | Loja criada por RockyTube</p>
+        <p>v1.0.0 | criado por RockyTube</p>
     </div>
 </div>

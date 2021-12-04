@@ -11,6 +11,7 @@ import { FiltersCategory } from 'src/models/category/filters-category';
 import { FiltersMovie } from 'src/models/movie/filters-movie';
 import { Movie } from 'src/models/movie/movie';
 import { MovieCategoryOutput } from 'src/models/category/movie-category-output';
+import { UserMovie } from 'src/models/movie/user-movie';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseApiService {
@@ -50,7 +51,7 @@ export class ApiService extends BaseApiService {
     await this.get(`users/get?${ApiService.getUrlQueryParameters({ id })}`, await this.getRequestHeaders());
   //#endregion
 
-  //#region ProductsList
+  //#region MoviesList
   saveMovie = async (movie: Movie): Promise<any> =>
     await this.post('moviesregister/create', movie, await this.getRequestHeaders());
 
@@ -61,6 +62,18 @@ export class ApiService extends BaseApiService {
     filters = filters ? filters : new FiltersMovie();
     return await this.post('moviesList/list', filters, await this.getRequestHeaders());
   }
+
+  listUserMovies = async (filters?: FiltersMovie): Promise<Movie[]> => {
+    filters = filters ? filters : new FiltersMovie();
+    return await this.post('moviesList/user-movies-list', filters, await this.getRequestHeaders());
+  }
+
+  addUserMovie = async (movie: UserMovie): Promise<any> =>
+    await this.post('moviesList/add-movie-list', movie, await this.getRequestHeaders());
+
+  removeUserMovie = async (movie: UserMovie): Promise<any> =>
+    await this.post('moviesList/remove-movie-list', movie, await this.getRequestHeaders());
+
   //#endregion
 
   //#region Category

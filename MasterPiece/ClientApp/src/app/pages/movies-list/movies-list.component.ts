@@ -6,8 +6,10 @@ import { BaseEdit } from "../base/base-edit.component";
 import { UserService } from "src/shared/services/user.service";
 import { Movie } from "src/models/movie/movie";
 import { FiltersMovie } from "src/models/movie/filters-movie";
-import { MoviesService } from "src/shared/services/products.service";
+import { MoviesService } from "src/shared/services/movies.service";
 import { MovieCategoryOutput } from "src/models/category/movie-category-output";
+import { LoggedUserService } from "src/app/cache/loggedUser.component";
+import { User } from "src/models/register-login/user";
 
 
 @Component({
@@ -20,23 +22,26 @@ export class MoviesListComponent extends BaseEdit<Movie> implements OnInit {
   movies: Array<Movie>;
   filters: FiltersMovie = new FiltersMovie();
   categories = Array<MovieCategoryOutput>();
-
+  currentUser: User;
 
   constructor(
     protected apiService: ApiService,
     protected moviesService: MoviesService,
     protected userService: UserService,
     protected router: Router,
+    private loggedUserService: LoggedUserService,
     protected utils: Utils) {
     super(router, utils);
   }
   ngOnInit(): void {
-    if(this.dataReceived){
+    this.currentUser = this.loggedUserService.getLoggedUser().user;
+    if (this.dataReceived) {
       this.filters.movieName = this.dataReceived.movieName;
       this.filters.categoryId = this.dataReceived.categoryId;
     }
     this.filters.page = 1;
     this.filters.limit = 25;
+    this.filters.userId = this.currentUser ? this.currentUser.id : ''
     this.getMovies();
     this.getCategories();
   }
@@ -84,4 +89,22 @@ export class MoviesListComponent extends BaseEdit<Movie> implements OnInit {
   }
 
   onClickFilterMoviesByCategory = (categoryId: string) => this.router.navigateByUrl('/movies-list', { state: { categoryId: categoryId } });
+
+
+  onClickShowMovie = (movieLink: string) => this.router.navigateByUrl('/movie-show', { state: { movieLink: movieLink } });
+
+  onClickChangeFromList = async (movie: Movie) => {
+    try {
+      this.isLoading = true;
+      await this.apiService[movie.auxiliaryProperties.addedToList ? 'removeUserMovie' : 'addUserMovie']({ movieId: movie.id, userId: this.currentUser ? this.currentUser.id : '' });
+      movie.auxiliaryProperties.addedToList = !movie.auxiliaryProperties.addedToList;
+    }
+    catch (e) {
+      this.utils.errorMessage(e);
+    }
+    finally {
+      this.isLoading = false;
+    }
+  }
+
 }

@@ -5,33 +5,23 @@
             <h4>Pesquisar</h4>
             <span class="divider"></span>
             <a *ngFor="let category of categories"
-                (click)="onClickFilterProductsByCategory(category.id)">{{category.name}}</a>
-        </div>
-        <div class="bg-products">
-            <div class="card" *ngFor="let product of products">
-                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
-                        [src]="product.auxiliaryProperties.imageUrl" /></div>
-                <div class="description">
-                    <h5>{{ product.name }}</h5>
-                    <div class="infos">
-                        <p *ngIf="product.type == 1"><b>{{ product.balance | quantity }} unidades</b> para <b>Adoção</b></p>
-                        <p *ngIf="product.type == 2"><b>{{ product.balance | quantity }} unidades</b> por <b>R$ {{ product.price | money:'R$' }}</b></p>
-                        <button class="info-btn bt-left" type="button" (click)="buyProduct(product)">Comprar</button>
-                        <button class="info-btn bt-right" type="button"><i class="fas fa-shopping-bag"></i></button>
-                    </div>
-                </div>
-            </div>
+                (click)="onClickFilterMoviesByCategory(category.id)">{{category.name}}</a>
         </div>
     </div>
     <div class="right">
-        <div class="bg-products">
-            <div class="card" *ngFor="let product of movies">
-                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
-                        [src]="product.auxiliaryProperties.imageUrl" /></div>
+        <div class="bg-movies">
+            <div class="card" *ngFor="let movie of movies">
+                <div class="image" (click)="onClickShowMovie(movie.path)"><img
+                        *ngIf="movie.auxiliaryProperties && movie.auxiliaryProperties.imageUrl"
+                        [src]="movie.auxiliaryProperties.imageUrl" /></div>
                 <div class="description">
-                    <h5>{{ product.name }}</h5>
+                    <a class="send-to-list" (click)="onClickChangeFromList(movie)">
+                        <i class="fas fa-star" *ngIf="movie.auxiliaryProperties.addedToList"></i>
+                        <i class="far fa-star" *ngIf="!movie.auxiliaryProperties.addedToList"></i>
+                    </a>
+                    <h5>{{ movie.name }}</h5>
                     <div class="infos">
-                        <button class="info-btn bt-left" type="button">Assistir</button>
+                        <p>{{movie.description}}</p>
                     </div>
                 </div>
             </div>

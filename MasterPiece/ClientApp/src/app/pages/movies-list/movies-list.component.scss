@@ -1,11 +1,13 @@
-@import "../../../shared/scss/bg-products.scss";
+@import "../../../shared/scss/bg-movies.scss";
 
 .page {
     padding: 50px 150px;
+    padding-top: 100px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     min-height: 100vh;
+    background-color: var(--background-color);
     .left {
         width: 25%;
         display: flex;
@@ -21,7 +23,7 @@
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
-            color: #000;
+            color: #fff;
             text-decoration: none;
             border-bottom: 2px solid var(--theme-main-color);
             padding-bottom: 10px;
@@ -42,7 +44,7 @@
                 }
             }
         }
-        .bg-products {
+        .bg-movies {
             margin-left: 0;
             padding: 0;
             .card {
@@ -111,12 +113,12 @@
             input {
                 width: 50px;
                 color: var(--theme-main-color);
-                border: 2px solid #000;
+                border: 2px solid #fff;
                 border-radius: 5px;
                 text-align: center;
                 transition: 0.3s;
                 :focus {
-                    border: 2px solid var(--theme-main-color);
+                    border: 2px solid #fff;
                 }
             }
         }
@@ -133,7 +135,7 @@ input[type="number"] {
 @media only screen and (max-width: 1500px) {
     .page {
         .right {
-            .bg-products {
+            .bg-movies {
                 .card {
                     width: 47%;
                 }
@@ -145,7 +147,7 @@ input[type="number"] {
 @media only screen and (max-width: 1400px) {
     .page {
         .right {
-            .bg-products {
+            .bg-movies {
                 margin-left: 0;
                 width: 100%;
                 .card {
@@ -170,7 +172,7 @@ input[type="number"] {
 @media only screen and (max-width: 1000px) {
     .page {
         padding: 50px;
-        .bg-products {
+        .bg-movies {
             padding: 0;
             .card {
                 margin: 10px 0;

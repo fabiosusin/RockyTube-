@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppCommonModule } from '../../../app/modules/app-common.module';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { MoviesService } from 'src/shared/services/products.service';
+import { MoviesService } from 'src/shared/services/movies.service';
 
 
 export const CURRENT_ROUTES: Routes = [

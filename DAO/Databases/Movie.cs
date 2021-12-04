@@ -22,26 +22,7 @@ namespace DAO.Databases
         public string PictureBase64 { get; set; }
         public string PathBase64 { get; set; }
         public string ImageUrl { get; set; }
-    }
-
-    public class Image
-    {
-        public string Webp { get; set; }
-    }
-
-    public enum ProductType
-    {
-        Default,
-        Donation,
-        ForSale
-    }
-
-    public enum ProductStatus
-    {
-        Default,
-        Valid,
-        Sold,
-        Invalid
+        public bool AddedToList { get; set; }
     }
 }
 

@@ -39,10 +39,6 @@
                 <th mat-header-cell *matHeaderCellDef>CPF/CNPJ</th>
                 <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
             </ng-container>
-            <ng-container matColumnDef="address">
-                <th mat-header-cell *matHeaderCellDef>Endereço</th>
-                <td mat-cell *matCellDef="let element"> {{getAddress(element.address)}} </td>
-            </ng-container>
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef>Editar</th>
                 <td mat-cell *matCellDef="let element"><a [routerLink]="'/register/' + element.id" class="edit"><i class="fas fa-pencil-alt"></i></a></td>

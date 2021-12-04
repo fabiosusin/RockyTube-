@@ -1,52 +1,67 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <div class="page">
-    <div class="header-info">
-        <h1><strong>Rocky</strong>Tube</h1>
-        <p>Filmes e Séries</p>
-    </div>
-    <div class="main-color-line"></div>
     <div class="content">
-        <div class="container">
-            <div class="texts">
-                <h1>BEM VINDO A NOSSA LOJA</h1>
-                <p>A RockyTube é um provedora de filmes e séries de televisão via streaming sediada em Los Gatos,
-                    Califórnia, e que atualmente possui mais de 208 milhões de assinantes. Fundada em 1997 nos Estados
-                    Unidos, a empresa surgiu como um serviço de entrega de DVD pelo correio.</p>
-            </div>
-        </div>
-        <h2 class="title"><b></b><span>Pesquisar</span><b></b></h2>
-        <div class="bg-products">
+        <h2 class="title">Pesquisar</h2>
+        <div class="bg-movies">
             <div class="card category" *ngFor="let category of categories"
                 (click)="onClickFilterMoviesByCategory(category.id)">
                 <div class="image"><img *ngIf="category.imageUrl" [src]="category.imageUrl" /></div>
                 <div class="description">
                     <h5>{{ category.name }}</h5>
-                    <p class="show-on-hover">{{ category.products }} filmes</p>
+                    <p class="show-on-hover">{{ category.movies }} filmes</p>
                 </div>
             </div>
         </div>
-        <h2 class="title"><b></b><span>filmes em Destaque</span><b></b></h2>
-        <div class="bg-products">
-            <div class="card" *ngFor="let product of movies">
-                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
-                        [src]="product.auxiliaryProperties.imageUrl" /></div>
+        <h2 class="title">Minha Lista</h2>
+        <div class="bg-movies">
+            <div class="card" *ngFor="let movie of myList">
+                <div class="image" (click)="onClickShowMovie(movie.path)"><img
+                        *ngIf="movie.auxiliaryProperties && movie.auxiliaryProperties.imageUrl"
+                        [src]="movie.auxiliaryProperties.imageUrl" /></div>
                 <div class="description">
-                    <h5>{{ product.name }}</h5>
+                    <a class="send-to-list" (click)="onClickChangeFromList(movie)">
+                        <i class="fas fa-star" *ngIf="movie.auxiliaryProperties.addedToList"></i>
+                        <i class="far fa-star" *ngIf="!movie.auxiliaryProperties.addedToList"></i>
+                    </a>
+                    <h5>{{ movie.name }}</h5>
                     <div class="infos">
-                        <button class="info-btn bt-left" type="button">Assistir</button>
+                        <p>{{movie.description}}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <h2 class="title"><b></b><span>Novos Filme</span><b></b></h2>
-        <div class="bg-products">
-            <div class="card" *ngFor="let product of movies">
-                <div class="image"><img *ngIf="product.auxiliaryProperties && product.auxiliaryProperties.imageUrl"
-                        [src]="product.auxiliaryProperties.imageUrl" /></div>
+        <h2 class="title">filmes em Destaque</h2>
+        <div class="bg-movies">
+            <div class="card" *ngFor="let movie of movies">
+                <div class="image" (click)="onClickShowMovie(movie.path)"><img
+                        *ngIf="movie.auxiliaryProperties && movie.auxiliaryProperties.imageUrl"
+                        [src]="movie.auxiliaryProperties.imageUrl" /></div>
                 <div class="description">
-                    <h5>{{ product.name }}</h5>
+                    <a class="send-to-list" (click)="onClickChangeFromList(movie)">
+                        <i class="fas fa-star" *ngIf="movie.auxiliaryProperties.addedToList"></i>
+                        <i class="far fa-star" *ngIf="!movie.auxiliaryProperties.addedToList"></i>
+                    </a>
+                    <h5>{{ movie.name }}</h5>
                     <div class="infos">
-                        <button class="info-btn bt-left" type="button">Assistir</button>
+                        <p>{{movie.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="title">Novos Filmes</h2>
+        <div class="bg-movies">
+            <div class="card" *ngFor="let movie of movies">
+                <div class="image" (click)="onClickShowMovie(movie.path)"><img
+                        *ngIf="movie.auxiliaryProperties && movie.auxiliaryProperties.imageUrl"
+                        [src]="movie.auxiliaryProperties.imageUrl" /></div>
+                <div class="description">
+                    <a class="send-to-list" (click)="onClickChangeFromList(movie)">
+                        <i class="fas fa-star" *ngIf="movie.auxiliaryProperties.addedToList"></i>
+                        <i class="far fa-star" *ngIf="!movie.auxiliaryProperties.addedToList"></i>
+                    </a>
+                    <h5>{{ movie.name }}</h5>
+                    <div class="infos">
+                        <p>{{movie.description}}</p>
                     </div>
                 </div>
             </div>

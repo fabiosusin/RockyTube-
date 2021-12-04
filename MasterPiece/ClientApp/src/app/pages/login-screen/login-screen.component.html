@@ -1,7 +1,8 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <div class="login-page">
-    <div class="logo"></div>
+    <img src="../../../assets/images/login-background.jpg" class="bg-img">
     <div class="form">
+        <h1 class="title">RockyTube</h1>
         <form class="login-form" [formGroup]="form">
             <input type="text" placeholder="Email" formControlName="email" />
             <input type="password" placeholder="Senha" formControlName="password" />

@@ -1,7 +1,9 @@
-@import "../../../shared/scss/bg-products.scss";
+@import "../../../shared/scss/bg-movies.scss";
 
 .page {
     position: relative;
+    padding-top: 100px;
+    background-color: var(--background-color);
     .header-info {
         height: 400px;
         background: var(--background-color);
@@ -52,29 +54,18 @@
         justify-content: space-between;
         border-radius: 3px;
         margin: 50px;
-        span {
-            border: 2px solid #333;
-            padding: 10px 15px;
-            font-size: 17px;
-            flex-flow: row wrap;
-            text-transform: uppercase;
-            color: #000;
-        }
-        b {
-            display: block;
-            flex: 1;
-            height: 2px;
-            opacity: 0.1;
-            background-color: var(--theme-main-color);
-        }
+        color: #fff;
+        margin-bottom: 0;
+        margin-left: 40px;
+        text-transform: capitalize;
     }
-    .category{
+    .category {
         cursor: pointer;
     }
 }
 
 @media only screen and (max-width: 1750px) {
-    .bg-products {
+    .bg-movies {
         .card {
             width: 18%;
         }
@@ -82,7 +73,7 @@
 }
 
 @media only screen and (max-width: 1550px) {
-    .bg-products {
+    .bg-movies {
         .card {
             width: 26%;
         }
@@ -90,7 +81,7 @@
 }
 
 @media only screen and (max-width: 1500px) {
-    .bg-products {
+    .bg-movies {
         .card {
             width: 42%;
         }
@@ -98,7 +89,7 @@
 }
 
 @media only screen and (max-width: 1400px) {
-    .bg-products {
+    .bg-movies {
         margin-left: 0;
         width: 100%;
         .card {
@@ -111,7 +102,7 @@
     .page {
         .content {
             padding: 50px;
-            .bg-products {
+            .bg-movies {
                 padding: 0;
                 .card {
                     margin: 10px 0;
@@ -128,5 +119,3 @@
         }
     }
 }
-
-

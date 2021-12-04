@@ -22,7 +22,7 @@ export class UsersComponent extends BaseEdit<User> implements OnInit {
   }
 
   filter: UsersFilter = new UsersFilter();
-  displayedColumns: string[] = ['blocked', 'name', 'email', 'cpf', 'address', 'edit'];
+  displayedColumns: string[] = ['blocked', 'name', 'email', 'cpf', 'edit'];
   dataSource = Array<User>();
 
   ngOnInit() {

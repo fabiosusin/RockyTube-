@@ -1,0 +1,9 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="page">
+    <a (click)="goBack()" class="back">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <video controls (click)="startVideo()" width="400" #videoPlayer>
+        <source [src]="movieLink" type="video/mp4">
+    </video>
+</div>

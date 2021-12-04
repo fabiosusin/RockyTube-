@@ -8,6 +8,7 @@ import { ApiService } from 'src/shared/services/api.service';
 import { UserService } from 'src/shared/services/user.service';
 import { Utils } from 'src/shared/utils';
 import { BaseEdit } from '../base/base-edit.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register-login-component',
@@ -22,6 +23,7 @@ export class RegisterScreenComponent extends BaseEdit<User> implements OnInit {
     protected loggedUserService: LoggedUserService,
     protected activatedRoute: ActivatedRoute,
     protected utils: Utils,
+    private location: Location,
     protected router: Router) {
     super(router, utils);
   }
@@ -99,4 +101,6 @@ export class RegisterScreenComponent extends BaseEdit<User> implements OnInit {
       this.isLoading = false;
     }
   }
+
+  goBack = () => this.location.back();
 }

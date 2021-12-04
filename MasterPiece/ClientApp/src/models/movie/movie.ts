@@ -14,4 +14,5 @@ export class AuxiliaryProperties {
     pictureBase64?: string;
     pathBase64?: string;
     imageUrl?: string;
+    addedToList?: boolean;
 }

@@ -24,7 +24,7 @@ export class AppComponent extends BasePage implements OnInit {
     super(router, utils);
   }
 
-  productName: string;
+  movieName: string;
   amount: number;
   openDropdown: boolean;
   loggedModel: LoggedUserModel;
@@ -67,7 +67,7 @@ export class AppComponent extends BasePage implements OnInit {
     this.router.navigateByUrl('/movies' );
   }
 
-  onClickFindProducts = () => this.router.navigateByUrl('/movies-list', { state: { productName: this.productName } });
+  onClickFindMovies = () => this.router.navigateByUrl('/movies-list', { state: { movieName: this.movieName } });
 
-  onClickFilterProductsByCategory = (categoryId: string) => this.router.navigateByUrl('/movies-list', { state: { categoryId: categoryId } });
+  onClickFilterMoviesByCategory = (categoryId: string) => this.router.navigateByUrl('/movies-list', { state: { categoryId: categoryId } });
 }
